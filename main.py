@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Entry, Canvas, Label, Button, Menu, Tk
 from xo import MainWindow, ChildWindow, Players, DrowXO, Board, PlayProcces
 
 global PLAYER_ONE, PLAYER_TWO, CANVA, BOARD
@@ -165,23 +165,27 @@ def press_button(event):
         x_object.drow_o()
         BOARD.cell[2][2] = 2
         change_player_x()
+
     BOARD.player = 1
     BOARD.check_players_win()
     if BOARD.winn == 1:
         print_player_wins(player=PLAYER_ONE.name, color="green")
         PLAYER_ONE.winscount += 1
+
     BOARD.player = 2
     BOARD.check_players_win()
     if BOARD.winn == 2:
         print_player_wins(player=PLAYER_TWO.name, color="red")
         PLAYER_TWO.winscount += 1
+
+    BOARD.check_players_win()
     if BOARD.winn == 3:
         print_player_wins(player="НИЧЬЯ!!!", color="yellow")
 
 
 def print_player_wins(player, color):
     if player == "НИЧЬЯ!!!":
-        CANVA.create_text(250, 200, text=f"{player}", fill=color, font=("Impact", "48"))
+        CANVA.create_text(250, 250, text=f"{player}", fill=color, font=("Impact", "48"))
         return
     CANVA.create_text(250, 200, text=f"{player}", fill=color, font=("Impact", "48"))
     CANVA.create_text(250, 300, text="ПОБЕДИЛ!!!", fill=color, font=("Impact", "48"))
@@ -204,6 +208,7 @@ def change_player_x():
 
 
 if __name__ == "__main__":
+    """Решил леализовать через GUI. По классам немного отличается, а в целом...)))"""
     PLAYER_ONE = Players(name="Игрок1", xo="X", winscount=0)
     PLAYER_TWO = Players(name="Игрок2", xo="O", winscount=0)
     mainwindow = MainWindow(title="XO", size="600x600", shift="+100+100", root=Tk())
