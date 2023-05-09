@@ -6,7 +6,7 @@ global label_player_one, label_player_two, label_playerone_wins, label_playertwo
 
 
 def get_settings():
-    childwindow = ChildWindow(title="Насройки", size="400x200", shift="+200+350", parent_window=mainwindow.root)
+    childwindow = ChildWindow(title="Настройки", size="400x200", shift="+50+50", parent_window=mainwindow.root)
     Label(childwindow.child, text="Игрок №1 (имя)", font=("Courier", "14")).place(x=10, y=10)
     player_one_name = Entry(childwindow.child, width=34, font=("Ariel", "14"))
     player_one_name.insert(0, PLAYER_ONE.name)
