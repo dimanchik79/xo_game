@@ -2,7 +2,7 @@ from tkinter import Entry, Canvas, Label, Button, Menu, Tk
 from xo import MainWindow, ChildWindow, Players, DrowXO, Board, PlayProcces
 
 global PLAYER_ONE, PLAYER_TWO, CANVA, BOARD
-global label_player_one, label_player_two, label_playerone_wins, label_playertwo_wins
+global label_player_one, label_player_two, label_playerone_wins, label_playertwo_wins, mainwindow
 
 
 def get_settings():
@@ -184,11 +184,17 @@ def press_button(event):
 
 
 def print_player_wins(player, color):
+    PlayProcces.playstate = False
+    destroy_object = [label_player_one, label_player_two, label_playerone_wins, label_playertwo_wins]
+    for object_name in destroy_object:
+        object_name.destroy()
+
     if player == "НИЧЬЯ!!!":
         CANVA.create_text(250, 250, text=f"{player}", fill=color, font=("Impact", "48"))
         return
     CANVA.create_text(250, 200, text=f"{player}", fill=color, font=("Impact", "48"))
     CANVA.create_text(250, 300, text="ПОБЕДИЛ!!!", fill=color, font=("Impact", "48"))
+
 
 
 def change_player_o():
